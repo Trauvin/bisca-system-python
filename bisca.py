@@ -44,6 +44,26 @@ def turno():
     print("{:>7}{:>7}{:>7}".format(jogador3[0], jogador3[1], jogador3[2]))
     print("{:>7}{:>7}{:>7}".format(jogador4[0], jogador4[1], jogador4[2]))
     
+    mesa = []
+    jogadores = [jogador1, jogador2, jogador3, jogador4]
+    
+    # coloca as cartas na mesa de acordo com o número selecionado pelo jogador
+    for jogador in jogadores:
+        selecione = int(input("Jogador #{} escolha um número de 1 a 3: ".format(jogador)))
+
+        if selecione == 1:
+            n1 = jogador.pop(0)
+            mesa.append(n1)
+
+        elif selecione == 2:
+            n1 = jogador.pop(1)
+            mesa.append(n1)
+
+        elif selecione == 3:
+            n1 = jogador.pop(2)
+            mesa.append(n1)
+
+    print(mesa)
 
     return jogador1, jogador2, jogador3, jogador4
 
