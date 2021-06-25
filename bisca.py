@@ -17,7 +17,6 @@ def mistura_baralho():
     return baralho
 
 
-
 def distribui_carta(baralho, participante):
 
     carta = baralho.pop()
@@ -26,26 +25,19 @@ def distribui_carta(baralho, participante):
 
 def turno():
     baralho = mistura_baralho()
-    # while(baralho != 0):
     jogador1 = []
     jogador2 = []
-    jogador3 = []
-    jogador4 = []
 
     # distribui a mão inicial dos jogadores
     for i in range(3):
         distribui_carta(baralho, jogador1)
         distribui_carta(baralho, jogador2)
-        distribui_carta(baralho, jogador3)
-        distribui_carta(baralho, jogador4)
 
     print("{:>7}{:>7}{:>7}".format(jogador1[0], jogador1[1], jogador1[2]))
     print("{:>7}{:>7}{:>7}".format(jogador2[0], jogador2[1], jogador2[2]))
-    print("{:>7}{:>7}{:>7}".format(jogador3[0], jogador3[1], jogador3[2]))
-    print("{:>7}{:>7}{:>7}".format(jogador4[0], jogador4[1], jogador4[2]))
     
     mesa = []
-    jogadores = [jogador1, jogador2, jogador3, jogador4]
+    jogadores = [jogador1, jogador2]
     
     # coloca as cartas na mesa de acordo com o número selecionado pelo jogador
     for jogador in jogadores:
@@ -65,7 +57,7 @@ def turno():
 
     print(mesa)
 
-    return jogador1, jogador2, jogador3, jogador4
+    return mesa
 
 
 def trunfo():
@@ -76,12 +68,33 @@ def trunfo():
     print("{}".format(trunfo))
 
 
-def total(mao):
+def total(mesa):
 
-    valores = {'2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 10, 
-    'J': 3, 'K': 4, 'Q': 2, 'A': 10 }
+    valores = {'2': 0, '3': 0, '4': 0, '5': 0, '6': 0, 'Q': 2,  
+    'J': 3, 'K': 4, '7': 10, 'A': 10 }
+
+    pts = 0
+    for carta in mesa:
+        p1 = valores[carta[0]]
+        pts += p1
 
 
-# trunfo()
-turno()
+    return pts
+
+def ganhador_turno():
     
+    mesa = turno()
+
+    if mesa[0] > mesa[1]:
+        print("Vencedor jogador1")
+        pts_p1 = total(mesa)
+        print("Pontuação turno = ", pts_p1)
+    elif mesa[1] > mesa[0]:
+        print("Vencedor jogador2 ")
+        pts_p2 = total(mesa)
+        print("Pontuação turno = ", pts_p2)
+# ganhador_turno()
+# mesa = turno()
+# total(mesa)
+
+ganhador_turno()
