@@ -16,7 +16,11 @@ class Baralho:
         
         return pack
     
-    def return_card(self, pack):
-
+    def return_card(self):
+        pack = self.shuffle_pack()
         card = pack.pop()
         return card
+    
+b1 = Baralho()
+print(b1.return_card().get())
+
